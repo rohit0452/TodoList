@@ -62,9 +62,22 @@
 
         function deletetask(index) {
             var Temparray = [];
-            for (var i = 0; i < todoItemElement.lenght; i++) {
+            for (var i = 0; i < todoItemElement.length; i++) {
                 if (i !== index) {
                     Temparray.push(todoItemElement[i]);
+
+                }
+            }
+            todoItemElement = Temparray;
+            rendor();
+        }
+
+        function edittask(index){
+            var Temparray = [];
+            for (var i = 0; i < todoItemElement.length; i++) {
+                if (i !== index) {
+
+
 
                 }
             }
@@ -85,6 +98,8 @@
                                     <div class="todolistdescription" >${todoItemElement[i].description}</div>
                                     <div class="todolistsubmittion">${todoItemElement[i].deadline}</div>
                                     <a class="deletebtn" href="#"  onclick="deletetask(${[i]})" > Delete</a>
+                                    |
+                                    <a class="editbtn" href="#">Edit</a>
                                   
                                    </div>`
             }
