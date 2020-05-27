@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Todo list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1>TODO LIST</h1>
+        <div id="todoElements">
+            <div class="todolist"></div>
+            <div class="todolistdescription"></div>
+            <div class="tdolistsubmittion"></div>
+        </div>
+        <form>
+            <input id="title" type="text" placeholder="Enter title">
+            <br>
+            <input type="text" id="description" placeholder="Enter Description">
+            <br>
+            <input type="date" id="deadline" placeholder="Enter deadline">
+        </form>
+
+        <button id="addtaskbtn" onclick="addtask()">Add Task</button>
+
+
+    </div>
+    <script>
+
+
+
+        var todoItemElement = [
+
+        ];
+
+        var todoElement = document.getElementById("todoElements")
+        var titleinput = document.getElementById("title")
+        var descriptioninput = document.getElementById("description")
+        var deadlineinput = document.getElementById("deadline")
+
+        function addtask() {
+            var titleinputvalue = titleinput.value
+            var descriptioninputvalue = descriptioninput.value
+            var deadlineinputvalue = deadlineinput.value
+
+            var newtask = {
+                title: titleinputvalue,
+                description: descriptioninputvalue,
+                deadline: deadlineinputvalue
+            }
+
+            todoItemElement.push(newtask);
+            rendor();
+
+            titleinput.value = "";
+            descriptioninput.value = "";
+            deadlineinput.value = "";
+
+
+        }
+
+        function deletetask(index) {
+            var Temparray = [];
+            for (var i = 0; i < todoItemElement.lenght; i++) {
+                if (i !== index) {
+                    Temparray.push(todoItemElement[i]);
+
+                }
+            }
+            todoItemElement = Temparray;
+            rendor();
+        }
+
+        function rendor() {
+
+
+            var itemHTML = " "
+
+            //loop
+            for (i = 0; i < todoItemElement.length; i++) {
+
+                itemHTML += ` <div class="todo ">
+                                    <div  class="todolist" >${todoItemElement[i].title}</div>
+                                    <div class="todolistdescription" >${todoItemElement[i].description}</div>
+                                    <div class="todolistsubmittion">${todoItemElement[i].deadline}</div>
+                                    <a class="deletebtn" href="#"  onclick="deletetask(${[i]})" > Delete</a>
+                                  
+                                   </div>`
+            }
+            todoElement.innerHTML = itemHTML;
+        }
+
+    </script>
+</body>
+
+</html>
